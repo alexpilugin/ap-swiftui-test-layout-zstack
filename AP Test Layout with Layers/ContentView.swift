@@ -9,13 +9,24 @@
 import SwiftUI
 
 
-
+//MARK: - layers of images
 func ImgBox(imageName: String) -> some View {
     Image(imageName)
        .resizable()
        .scaledToFill()
        .frame(width: 200, height: 200)
        .clipped()
+}
+
+//MARK: - Look and feel of buttons
+func ButtonLook(title: String, bgColor: Color, trigger: Bool)  -> some View {
+    Text(title)
+        .padding([.leading, .trailing], 10)
+        .padding([.top, .bottom], 5)
+        .background(bgColor)
+        .foregroundColor(.white)
+        .font(.subheadline)
+        .opacity(trigger ? 1.0 : 0.4)
 }
 
 struct ContentView: View {
@@ -33,55 +44,28 @@ struct ContentView: View {
             if isHidden3 == true { ImgBox(imageName: "for-layer-3") }
             if isHidden4 == true { ImgBox(imageName: "for-layer-4") }
             
+            //MARK: - Set of buttons
             VStack(alignment: .trailing, spacing: 0, content: {
                 HStack(alignment: .center, spacing: 5, content: {
                     Button(action: {
-                        withAnimation {
-                            self.isHidden1.toggle()
-                        }
+                        withAnimation { self.isHidden1.toggle() }
                     }) {
-                        Text("1st")
-                            .padding([.leading, .trailing], 10)
-                            .padding([.top, .bottom], 5)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .font(.subheadline)
+                        ButtonLook(title: "1st", bgColor: .blue, trigger: isHidden1)
                     }
                     Button(action: {
-                        withAnimation {
-                            self.isHidden2.toggle()
-                        }
+                        withAnimation { self.isHidden2.toggle() }
                     }) {
-                        Text("2nd")
-                            .padding([.leading, .trailing], 10)
-                            .padding([.top, .bottom], 5)
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .font(.subheadline)
+                        ButtonLook(title: "2nd", bgColor: .black, trigger: isHidden2)
                     }
                     Button(action: {
-                        withAnimation {
-                            self.isHidden3.toggle()
-                        }
+                        withAnimation { self.isHidden3.toggle() }
                     }) {
-                        Text("3rd")
-                            .padding([.leading, .trailing], 10)
-                            .padding([.top, .bottom], 5)
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .font(.subheadline)
+                        ButtonLook(title: "3rd", bgColor: .green, trigger: isHidden3)
                     }
                     Button(action: {
-                        withAnimation {
-                            self.isHidden4.toggle()
-                        }
+                        withAnimation { self.isHidden4.toggle() }
                     }) {
-                        Text("4th")
-                            .padding([.leading, .trailing], 10)
-                            .padding([.top, .bottom], 5)
-                            .background(Color.red)
-                            .foregroundColor(.white)
-                            .font(.subheadline)
+                        ButtonLook(title: "4th", bgColor: .red, trigger: isHidden4)
                     }
                 })
                     .padding(.top, 220)
